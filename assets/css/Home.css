@@ -399,8 +399,17 @@ header__icon img {
     transition: all .3s ease;
 }
 .accordion-content {
-    padding: 16px 0 0 27px;
-    
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+.accordion-item.active .accordion-content {
+    max-height: 500px; /* hoặc giá trị đủ lớn để hiển thị hết nội dung */
+    opacity: 1;
+}
+.accordion-header img {
+    transition: transform 0.3s ease;
 }
 .accordion-content__text {
     color: #404040;
