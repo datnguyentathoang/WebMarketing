@@ -324,7 +324,7 @@
                                 <img src="https://marketing.tabo.vn/assets/images/icon/arrow_drop_up.png" alt="arrow-down">
                             </div>
                         </div>
-                        <div class="accordion-content" style="display: none;">
+                        <div class="accordion-content" >
                             <div class="accordion-content__text">
                                 A amet lobortis id turpis. Lorem a pharetra id morbi blandit faucibus urna accumsan. Morbi adipiscing sit dolor velit tellus pulvinar enim feugiat nec.
                                 Ornare eu arcu sodales scelerisque mauris faucibus nullam sed. Enim ut donec et ornare egestas urna pellentesque venenatis mi. Condimentum tortor proin nec arcu.
@@ -352,7 +352,7 @@
                                 <img src="https://marketing.tabo.vn/assets/images/icon/arrow_drop_up.png" alt="arrow-down">
                             </div>
                         </div>
-                        <div class="accordion-content" style="display: none;">
+                        <div class="accordion-content" >
                             <div class="accordion-content__text">
                                 A amet lobortis id turpis. Lorem a pharetra id morbi blandit faucibus urna accumsan. Morbi adipiscing sit dolor velit tellus pulvinar enim feugiat nec.
                                 Ornare eu arcu sodales scelerisque mauris faucibus nullam sed. Enim ut donec et ornare egestas urna pellentesque venenatis mi. Condimentum tortor proin nec arcu.
@@ -380,7 +380,7 @@
                                 <img src="https://marketing.tabo.vn/assets/images/icon/arrow_drop_up.png" alt="arrow-down">
                             </div>
                         </div>
-                        <div class="accordion-content" style="display: none;">
+                        <div class="accordion-content" >
                             <div class="accordion-content__text">
                                 A amet lobortis id turpis. Lorem a pharetra id morbi blandit faucibus urna accumsan. Morbi adipiscing sit dolor velit tellus pulvinar enim feugiat nec.
                                 Ornare eu arcu sodales scelerisque mauris faucibus nullam sed. Enim ut donec et ornare egestas urna pellentesque venenatis mi. Condimentum tortor proin nec arcu.
@@ -406,27 +406,38 @@
         </div>
     </div>
     <script>
-        document.querySelectorAll(".accordion-header").forEach(header => {
+document.querySelectorAll(".accordion-header").forEach(header => {
     header.addEventListener("click", () => {
         let accordionItem = header.parentElement;
         let content = accordionItem.querySelector(".accordion-content");
         let icon = header.querySelector("img");
+
         document.querySelectorAll(".accordion-item").forEach(item => {
             if (item !== accordionItem) {
                 item.classList.remove("active");
-                item.querySelector(".accordion-content").style.display = "none";
-                item.querySelector("img").style.transform = "rotate(180deg)";
+                let otherContent = item.querySelector(".accordion-content");
+                let otherIcon = item.querySelector(".accordion-header img");
+
+                otherContent.style.maxHeight = "0";
+                otherContent.style.opacity = "0";
+                otherIcon.style.transform = "rotate(180deg)";
             }
         });
-        if (content.style.display === "block") {
-            content.style.display = "none";
+        let isActive = accordionItem.classList.contains("active");
+        accordionItem.classList.toggle("active");
+
+        if (isActive) {
+            content.style.maxHeight = "0";
+            content.style.opacity = "0";
             icon.style.transform = "rotate(180deg)";
         } else {
-            content.style.display = "block";
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.style.opacity = "1";
             icon.style.transform = "rotate(0deg)";
         }
     });
 });
+
     </script>
 </body>
 </html>
